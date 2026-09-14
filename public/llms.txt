@@ -1,0 +1,18 @@
+# Aruna Somesh — Full-Stack & AI Systems Developer
+
+> Portfolio and technical profile of Aruna Somesh. Specializing in full-stack web applications, autonomous AI agents, and intelligent system automations.
+
+## Summary
+- Name: Aruna Somesh
+- Role: Full-Stack Developer & AI Solutions Engineer
+- Website: https://arunasomesh.com
+- Positioning: 1.5+ years of software development experience specializing in AI systems, autonomous workflows, and full-stack web applications.
+
+## Core Services
+- Full-Stack Web Development: End-to-end web applications with Next.js, React, TypeScript, and modern database architectures.
+- Autonomous AI Agents: Multi-step reasoning agents that execute complex workflows autonomously.
+- AI Automations: Intelligent pipelines automating repetitive business tasks and customer operations.
+- UI/UX Design: Intuitive, accessible, and high-impact web design.
+
+## Featured Work
+- CTO BEES (NBNZIA): Boutique consulting firm platform uniting strategic foresight with technical depth and AI transformation.

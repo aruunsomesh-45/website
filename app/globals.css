@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8f9fa; /* Light paper color */
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-didone: var(--font-bodoni), var(--font-playfair), "Bodoni MT", Didot, "Didot LT STD", "Playfair Display", serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Base styling for the SplitType characters if needed */
+.line {
+  overflow: hidden;
+}
+
+.shader-text {
+  background: linear-gradient(
+    120deg,
+    #020617 0%,
+    #0f172a 20%,
+    #1e3a8a 40%,
+    #60a5fa 50%,
+    #1e3a8a 60%,
+    #0f172a 80%,
+    #020617 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  animation: moveShader 6s ease-in-out infinite;
+}
+
+@keyframes moveShader {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.silver-text {
+  background: linear-gradient(
+    120deg,
+    #737373 0%,
+    #a3a3a3 20%,
+    #e5e5e5 40%,
+    #ffffff 50%,
+    #e5e5e5 60%,
+    #a3a3a3 80%,
+    #737373 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  animation: moveShader 6s ease-in-out infinite;
+}
+
+/* High-contrast Didone/modern serif hero headline "ELEVATE" */
+.elevate-text {
+  font-family: var(--font-bodoni), var(--font-playfair), "Bodoni MT", Didot, "Didot LT STD", "Playfair Display", serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(4.2rem, 14vw, 10.5rem);
+  line-height: 0.95;
+  letter-spacing: clamp(0.5rem, 3.2vw, 3rem);
+  display: inline-block;
+  transform: scale(0.92, 1.2);
+  transform-origin: center center;
+  padding-bottom: 0.1em;
+  
+  /* Multi-layered gradient:
+     Layer 1: Diagonal brushed metal / foil reflection highlight sheen at ~45deg
+              Applied across the metallic silver portion on the right
+     Layer 2: Primary horizontal linear gradient: deep maroon/burgundy (#7A3B4A) to metallic silver-grey (#B8BEC4 to #E8EAEC)
+  */
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent 0%,
+      transparent 48%,
+      rgba(255, 255, 255, 0.25) 53%,
+      rgba(255, 255, 255, 0.75) 57%,
+      rgba(255, 255, 255, 0.15) 62%,
+      transparent 67%,
+      rgba(255, 255, 255, 0.45) 75%,
+      rgba(255, 255, 255, 0.85) 80%,
+      rgba(255, 255, 255, 0.2) 85%,
+      transparent 90%,
+      rgba(255, 255, 255, 0.55) 96%,
+      transparent 100%
+    ),
+    linear-gradient(
+      90deg,
+      #561f2e 0%,
+      #7a3b4a 18%,
+      #8c4558 28%,
+      #7a5367 38%,
+      #84768b 48%,
+      #9fa6b2 58%,
+      #b8bec4 70%,
+      #d5dade 82%,
+      #e8eaec 92%,
+      #f3f5f7 100%
+    );
+  
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  /* Ambient contrast filter ensuring legibility against teal/seafoam and dark subjects */
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.5)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.65));
+}
+
