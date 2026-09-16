@@ -40,6 +40,7 @@ export default function Projects({
 
   return (
     <div id="work" className="w-full relative z-20">
+      <span id="projects" className="absolute -top-10" />
       {projects.map((project, index) => {
         const bg = project.backgroundColor || "#ffcd71";
         const accent = project.accentColor || "#123d8c";

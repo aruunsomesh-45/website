@@ -56,7 +56,7 @@ export default function Services({ sanityServices = [] }: { sanityServices?: Ser
   const displayServices = sanityServices && sanityServices.length > 0 ? sanityServices : fallbackServices;
 
   return (
-    <section className="w-full bg-[#111111] text-white py-24 md:py-32 px-6 md:px-12 flex justify-center z-20 relative">
+    <section id="services" className="w-full bg-[#111111] text-white py-24 md:py-32 px-6 md:px-12 flex justify-center z-20 relative">
       <div className="max-w-[1400px] w-full">
         <div className="border-t border-[#333]">
           {displayServices.map((service, index) => {

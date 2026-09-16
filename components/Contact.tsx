@@ -65,38 +65,49 @@ export default function Contact() {
     >
       <div className="max-w-[1380px] mx-auto">
         {/* Giant Headline */}
-        <h2 className="font-sans font-bold uppercase tracking-[-0.035em] text-[2.6rem] sm:text-[4.2rem] md:text-[5.5rem] lg:text-[6.8rem] xl:text-[8rem] leading-[0.96] text-white">
+        <h2 className="font-sans font-normal sm:font-medium uppercase tracking-[-0.035em] text-[2.6rem] sm:text-[4.2rem] md:text-[5.5rem] lg:text-[6.8rem] xl:text-[8rem] leading-[0.96] text-white">
           {/* Line 1: READY FOR [Avatar] YOUR */}
           <div className="flex items-center flex-wrap gap-x-2 sm:gap-x-4 md:gap-x-5 lg:gap-x-6">
-            <span className="whitespace-nowrap">
+            <span className="whitespace-nowrap transition-colors duration-300 hover:text-[#ff6a3d] cursor-pointer">
               READY F
               <span className="text-[#ff6a3d] bg-gradient-to-r from-[#ff6036] to-[#ff7d48] bg-clip-text text-transparent">
                 OR
               </span>
             </span>
 
-            {/* Embedded Avatar - Close-up Headshot crop */}
-            <span className="relative inline-block w-[0.82em] h-[0.92em] rounded-xl sm:rounded-2xl md:rounded-[20px] overflow-hidden align-middle border border-white/10 shadow-2xl mx-1 sm:mx-2 md:mx-3 flex-shrink-0 bg-[#161616]">
+            {/* Embedded Avatar - Close-up Headshot crop with hover image swap */}
+            <span className="group/avatar relative inline-block w-[0.82em] h-[0.92em] rounded-xl sm:rounded-2xl md:rounded-[20px] overflow-hidden align-middle border border-white/10 hover:border-[#ff6a3d]/50 shadow-2xl mx-1 sm:mx-2 md:mx-3 flex-shrink-0 bg-[#161616] cursor-pointer transition-all duration-300">
               <Image
                 src="/images/4.jpeg"
                 alt="Portrait"
                 fill
                 sizes="(max-width: 768px) 64px, 120px"
-                className="object-cover object-[72%_30%] scale-150"
+                className="object-cover object-[72%_30%] scale-150 transition-all duration-500 ease-out group-hover/avatar:opacity-0 group-hover/avatar:scale-125"
                 priority
+              />
+              <Image
+                src="/images/2.jpeg"
+                alt="Portrait Alternate"
+                fill
+                sizes="(max-width: 768px) 64px, 120px"
+                className="object-cover object-center scale-125 opacity-0 transition-all duration-500 ease-out group-hover/avatar:opacity-100 group-hover/avatar:scale-105"
               />
             </span>
 
-            <span className="whitespace-nowrap">YOUR</span>
+            <span className="whitespace-nowrap transition-colors duration-300 hover:text-[#ff6a3d] cursor-pointer">
+              YOUR
+            </span>
           </div>
 
           {/* Line 2: PRESTIGE MOMENT? */}
           <div className="mt-1 sm:mt-2 md:mt-3 whitespace-nowrap">
-            <span>PRESTI</span>
-            <span className="text-[#ff6a3d] bg-gradient-to-r from-[#ff6036] via-[#ff6f40] to-[#ff844e] bg-clip-text text-transparent">
-              GE MO
+            <span className="transition-colors duration-300 hover:text-[#ff6a3d] cursor-pointer">
+              <span>PRESTI</span>
+              <span className="text-[#ff6a3d] bg-gradient-to-r from-[#ff6036] via-[#ff6f40] to-[#ff844e] bg-clip-text text-transparent">
+                GE MO
+              </span>
+              <span>MENT?</span>
             </span>
-            <span>MENT?</span>
           </div>
         </h2>
 
@@ -105,7 +116,7 @@ export default function Contact() {
           {submitted ? (
             <div className="bg-[#181818] border border-[#2e2e2e] p-6 sm:p-8 flex items-center justify-between">
               <div>
-                <h4 className="text-xl sm:text-2xl font-bold text-white mb-1">
+                <h4 className="text-xl sm:text-2xl font-medium text-white mb-1">
                   Message received.
                 </h4>
                 <p className="text-sm text-[#888888]">
@@ -190,6 +201,16 @@ export default function Contact() {
               )}
             </div>
           )}
+        </div>
+
+        {/* Footer Sub-Bar */}
+        <div className="mt-20 sm:mt-28 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs font-mono font-light text-white/40 tracking-wider gap-4">
+          <span className="transition-colors duration-300 hover:text-[#ff6a3d] cursor-pointer">
+            © {new Date().getFullYear()} ARUNA SOMESH. ALL RIGHTS RESERVED.
+          </span>
+          <span className="transition-colors duration-300 hover:text-[#ff6a3d] cursor-pointer">
+            AVAILABLE FOR SELECT CLIENTS WORLDWIDE
+          </span>
         </div>
       </div>
     </section>

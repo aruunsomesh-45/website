@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function About() {
   return (
-    <section className="w-full bg-[#f4f4f4] text-[#171717] py-24 md:py-32 px-6 md:px-12 flex justify-center z-20 relative">
+    <section id="about" className="w-full bg-[#f4f4f4] text-[#171717] py-24 md:py-32 px-6 md:px-12 flex justify-center z-20 relative">
       <div className="max-w-[1400px] w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
         
         {/* Left Column */}
@@ -36,16 +37,22 @@ export default function About() {
           </h2>
 
           <div className="flex flex-col sm:flex-row w-full gap-4 mt-auto">
-            <button className="group relative bg-[#eb3d26] text-white px-10 py-5 text-sm font-medium hover:bg-[#d03520] transition-colors w-full sm:w-auto text-center">
+            <Link 
+              href="#contact" 
+              className="group relative bg-[#eb3d26] text-white px-10 py-5 text-sm font-medium hover:bg-[#d03520] transition-colors w-full sm:w-auto text-center inline-block cursor-pointer"
+            >
               <span className="relative z-10">Let&apos;s talk</span>
               <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-white opacity-70"></div>
               <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-white opacity-70"></div>
-            </button>
-            <button className="group relative bg-[#0f0f0f] text-white px-10 py-5 text-sm font-medium hover:bg-[#1a1a1a] transition-colors w-full sm:w-auto text-center">
+            </Link>
+            <Link 
+              href="#work" 
+              className="group relative bg-[#0f0f0f] text-white px-10 py-5 text-sm font-medium hover:bg-[#1a1a1a] transition-colors w-full sm:w-auto text-center inline-block cursor-pointer"
+            >
               <span className="relative z-10">See the work</span>
               <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-white opacity-70"></div>
               <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-white opacity-70"></div>
-            </button>
+            </Link>
           </div>
         </div>
 
