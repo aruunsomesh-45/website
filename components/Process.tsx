@@ -59,21 +59,12 @@ export default function Process() {
       {/* Pinned Viewport Container */}
       <div
         ref={containerRef}
-        className="w-full h-screen overflow-hidden flex flex-col justify-between relative bg-[#f5f3f3] select-none"
+        className="w-full h-screen overflow-hidden flex items-center justify-center relative bg-[#f5f3f3] select-none"
       >
-        {/* Top Micro-Typography Bar */}
-        <header className="w-full pt-16 md:pt-20 px-8 sm:px-14 md:px-20 flex items-center justify-between text-[10px] md:text-xs font-mono tracking-[0.35em] uppercase text-[#111111]/70 z-20">
-          <span className="font-light text-base md:text-lg opacity-40">{"{"}</span>
-          <span className="font-medium tracking-[0.35em]">PROCESS</span>
-          <span className="text-sm md:text-base opacity-90">♠</span>
-          <span className="font-medium tracking-[0.35em]">FULL STACK WEB DEVELOPMENT</span>
-          <span className="font-light text-base md:text-lg opacity-40">{"}"}</span>
-        </header>
-
         {/* Center: Invisible Circular Arc & Giant Sweeping Typography */}
-        <div className="flex-1 w-full flex items-center justify-center relative overflow-hidden px-2 md:px-6">
+        <div className="w-full h-full flex items-center justify-center relative overflow-hidden px-2 md:px-6">
           {/* Accessible Screen-Reader Headline */}
-          <h1 className="sr-only">Every Trick Leaves Evidence Clean Code Is What Remains: Full Stack Web Development</h1>
+          <h2 className="sr-only">Every Trick Leaves Evidence Clean Code Is What Remains</h2>
 
           {/* Precision SVG Circular TextPath */}
           <svg
@@ -117,13 +108,6 @@ export default function Process() {
             </text>
           </svg>
         </div>
-
-        {/* Bottom subtle negative space anchor */}
-        <footer className="w-full pb-8 md:pb-12 px-6 sm:px-10 md:px-16 flex items-center justify-between text-[10px] font-mono tracking-[0.25em] text-[#111111]/40 z-20">
-          <span>01 // FULL STACK WEB DEVELOPMENT</span>
-          <span className="hidden sm:inline">CLEAN CODE IS WHAT REMAINS</span>
-          <span>© {new Date().getFullYear()}</span>
-        </footer>
       </div>
     </section>
   );

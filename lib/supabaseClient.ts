@@ -9,6 +9,9 @@ export interface ContactSubmission {
   phone?: string | null;
   subject?: string | null;
   message?: string | null;
+  website_url?: string | null;
+  inquiry_id?: string | null;
+  query_messages?: string[] | null;
   status: SubmissionStatus;
   created_at: string;
   updated_at: string;
@@ -20,6 +23,9 @@ export interface ContactSubmissionInsert {
   phone?: string | null;
   subject?: string | null;
   message?: string | null;
+  website_url?: string | null;
+  inquiry_id?: string | null;
+  query_messages?: string[] | null;
   status?: SubmissionStatus;
 }
 
@@ -30,6 +36,9 @@ export interface ContactSubmissionUpdate {
   phone?: string | null;
   subject?: string | null;
   message?: string | null;
+  website_url?: string | null;
+  inquiry_id?: string | null;
+  query_messages?: string[] | null;
 }
 
 let clientInstance: SupabaseClient | null = null;

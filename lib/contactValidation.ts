@@ -7,6 +7,7 @@ export interface ValidatedContactData {
   phone?: string | null;
   subject?: string | null;
   message?: string | null;
+  websiteUrl?: string | null;
 }
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -92,6 +93,15 @@ export function validateContactSubmission(body: unknown): {
     }
   }
 
+  // Optional Website URL
+  let websiteUrl: string | null = null;
+  const rawUrl = payload.websiteUrl || payload.website_url;
+  if (rawUrl !== undefined && rawUrl !== null && rawUrl !== "") {
+    if (typeof rawUrl === "string") {
+      websiteUrl = sanitizeString(rawUrl.trim()).substring(0, 500);
+    }
+  }
+
   if (errors.length > 0) {
     return { isValid: false, errors };
   }
@@ -105,6 +115,7 @@ export function validateContactSubmission(body: unknown): {
       phone,
       subject,
       message,
+      websiteUrl,
     },
   };
 }

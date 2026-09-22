@@ -21,6 +21,7 @@ export default function About() {
               src="/images/1.jpeg" 
               alt="Work Collage" 
               fill 
+              sizes="(max-width: 1024px) 100vw, 450px"
               className="object-cover"
             />
           </div>

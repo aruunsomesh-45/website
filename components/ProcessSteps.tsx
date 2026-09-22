@@ -94,18 +94,18 @@ export default function ProcessSteps({ sanitySteps = [] }: { sanitySteps?: Sanit
       id="process-steps"
       aria-label="Process Steps"
       style={{ backgroundColor: "#ece9e4" }}
-      className="w-full relative z-20 py-24 sm:py-32 md:py-40 px-4 sm:px-8 lg:px-12 overflow-hidden select-none"
+      className="w-full relative z-20 py-12 sm:py-20 md:py-32 px-4 sm:px-8 lg:px-12 overflow-hidden select-none"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-7 items-stretch justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch justify-center">
           {steps.map((item, idx) => (
             <div
               key={idx}
               style={{ backgroundColor: "#ffffff" }}
-              className={`group relative rounded-[28px] sm:rounded-[32px] p-8 sm:p-10 lg:p-11 
+              className={`group relative rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 lg:p-10 
                 border border-black/[0.04] shadow-[0_16px_40px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.03)]
                 transition-all duration-500 ease-out will-change-transform flex flex-col justify-between
-                min-h-[580px] sm:min-h-[620px] lg:min-h-[640px]
+                min-h-0 sm:min-h-[520px] lg:min-h-[600px]
                 ${item.rotation} ${item.translate}
                 hover:shadow-[0_28px_60px_rgba(0,0,0,0.12)] hover:z-30 cursor-default`}
             >
@@ -115,18 +115,18 @@ export default function ProcessSteps({ sanitySteps = [] }: { sanitySteps?: Sanit
                   {item.step}
                 </span>
 
-                <h3 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-[#111111] tracking-tight leading-[1.12] mt-4 sm:mt-5 mb-5 sm:mb-6 font-sans">
+                <h3 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-bold text-[#111111] tracking-tight leading-[1.12] mt-3 sm:mt-4 mb-3 sm:mb-5 font-sans">
                   {item.title}
                 </h3>
 
-                <p className="text-[#333333] text-[14px] sm:text-[15px] leading-[1.6] font-normal">
+                <p className="text-[#333333] text-[13.5px] sm:text-[15px] leading-[1.6] font-normal">
                   {item.description}
                 </p>
               </div>
 
               {/* Card Bottom: Deliverables List */}
-              <div className="pt-12 sm:pt-16 mt-auto">
-                <ul className="space-y-1.5 sm:space-y-2 text-[10.5px] sm:text-[11px] font-mono tracking-[0.16em] uppercase text-[#666666] font-medium">
+              <div className="pt-6 sm:pt-10 mt-auto">
+                <ul className="space-y-1.5 sm:space-y-2 text-[10px] sm:text-[11px] font-mono tracking-[0.16em] uppercase text-[#666666] font-medium">
                   {item.deliverables.map((deliverable, dIdx) => (
                     <li
                       key={dIdx}

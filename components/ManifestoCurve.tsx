@@ -59,25 +59,16 @@ export default function ManifestoCurve() {
       {/* Pinned Viewport Container */}
       <div
         ref={containerRef}
-        className="w-full h-screen overflow-hidden flex flex-col justify-between relative bg-[#f5f3f3] select-none"
+        className="w-full h-screen overflow-hidden flex items-center justify-center relative bg-[#f5f3f3] select-none"
       >
-        {/* Top Micro-Typography Bar */}
-        <header className="w-full pt-16 md:pt-20 px-8 sm:px-14 md:px-20 flex items-center justify-between text-[10px] md:text-xs font-mono tracking-[0.35em] uppercase text-[#111111]/70 z-20">
-          <span className="font-light text-base md:text-lg opacity-40">{"{"}</span>
-          <span className="font-medium tracking-[0.35em]">AUTONOMOUS AGENTS</span>
-          <span className="text-sm md:text-base opacity-90">♠</span>
-          <span className="font-medium tracking-[0.35em]">PRODUCTION SYSTEMS</span>
-          <span className="font-light text-base md:text-lg opacity-40">{"}"}</span>
-        </header>
-
         {/* Center: Invisible Circular Arc & Giant Sweeping Downside Typography */}
-        <div className="flex-1 w-full flex items-center justify-center relative overflow-hidden px-2 md:px-6">
+        <div className="w-full h-full flex items-center justify-center relative overflow-hidden px-2 md:px-6">
           {/* Accessible Screen-Reader Headline */}
           <h2 className="sr-only">
             Full-stack developer turning 1.5 years of self-taught grind into AI agents that actually ship.
           </h2>
 
-          {/* Precision SVG Downward Circular TextPath (Completing the Circle with Top Arc) */}
+          {/* Precision SVG Downward Circular TextPath */}
           <svg
             viewBox="0 0 2400 900"
             fill="none"
@@ -119,13 +110,6 @@ export default function ManifestoCurve() {
             </text>
           </svg>
         </div>
-
-        {/* Bottom subtle negative space anchor */}
-        <footer className="w-full pb-8 md:pb-12 px-6 sm:px-10 md:px-16 flex items-center justify-between text-[10px] font-mono tracking-[0.25em] text-[#111111]/40 z-20">
-          <span>02 // AUTONOMOUS AI AGENTS</span>
-          <span className="hidden sm:inline">TURNING GRIND INTO CODE THAT SHIPS</span>
-          <span>© {new Date().getFullYear()}</span>
-        </footer>
       </div>
     </section>
   );

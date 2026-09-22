@@ -1,7 +1,7 @@
 export const defaultSeoConfig = {
   titleTemplate: '%s | Aruna Somesh',
   defaultTitle: 'Aruna Somesh | Full-Stack & AI Developer',
-  description: 'Portfolio of Aruna Somesh. Two years deep in code. One real case study. Zero interest in selling you buzzwords.',
+  description: 'Portfolio of Aruna Somesh. Full-stack web applications, AI automation platforms, and high-performance digital systems.',
   canonical: 'https://arunasomesh.com',
   openGraph: {
     type: 'website',

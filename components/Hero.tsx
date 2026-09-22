@@ -2,9 +2,11 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import CustomEase from "gsap/CustomEase";
+import MenuOverlay from "@/components/MenuOverlay";
 
 gsap.registerPlugin(useGSAP, CustomEase);
 
@@ -36,6 +38,7 @@ export default function Hero() {
   
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [activeWordIndex, setActiveWordIndex] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useGSAP(() => {
     CustomEase.create("hop", "M0,0 C0.05,0.8 0.1,1 1,1");
@@ -159,7 +162,8 @@ export default function Hero() {
               fill
               sizes="100vw"
               className="object-cover"
-              priority={idx >= IMAGES.length - 4} // prioritize last few images
+              priority={idx < 4 || idx >= IMAGES.length - 4}
+              loading={idx < 4 || idx >= IMAGES.length - 4 ? "eager" : "lazy"}
             />
           </div>
         ))}
@@ -182,27 +186,62 @@ export default function Hero() {
         </div>
       </div>
 
-      <nav ref={navRef} className="fixed top-0 left-0 w-full p-8 flex justify-between items-center z-40 text-[#171717] mix-blend-difference uppercase font-medium tracking-widest text-sm pointer-events-none">
-        <div className="text-white pointer-events-auto">Aruna Somesh</div>
-        <div className="text-white pointer-events-auto">Menu</div>
+      {/* Global Fixed Navigation Header */}
+      <nav ref={navRef} className="fixed top-0 left-0 w-full p-6 sm:p-8 flex justify-between items-center z-40 text-[#171717] mix-blend-difference uppercase font-medium tracking-widest text-sm pointer-events-none">
+        <Link href="/" className="text-white pointer-events-auto hover:text-[#ff6a3d] transition-colors">
+          Aruna Somesh
+        </Link>
+        
+        {/* Interactive iPhone Style Menu Trigger with SF Symbols 3-Bar Icon */}
+        <button
+          type="button"
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+          aria-expanded={isMenuOpen}
+          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          className="group text-white pointer-events-auto flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/20 hover:border-[#ff6a3d] hover:text-[#ff6a3d] hover:bg-white/5 transition-all active:scale-95 cursor-pointer bg-black/30 backdrop-blur-md shadow-md"
+        >
+          <span className="font-mono text-xs tracking-widest">
+            {isMenuOpen ? "CLOSE" : "MENU"}
+          </span>
+          <div className="relative w-4 h-3.5 flex flex-col justify-between items-center" aria-hidden="true">
+            <span
+              className={`block w-4 h-[1.75px] rounded-full bg-current transform-gpu transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                isMenuOpen ? "translate-y-[6px] rotate-45" : "translate-y-0 rotate-0"
+              }`}
+            />
+            <span
+              className={`block w-4 h-[1.75px] rounded-full bg-current transform-gpu transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                isMenuOpen ? "opacity-0 scale-x-0" : "opacity-100 scale-x-100"
+              }`}
+            />
+            <span
+              className={`block w-4 h-[1.75px] rounded-full bg-current transform-gpu transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                isMenuOpen ? "-translate-y-[6px] -rotate-45" : "translate-y-0 rotate-0"
+              }`}
+            />
+          </div>
+        </button>
       </nav>
+
+      {/* Interactive Full-Screen / Slide-Over Menu Overlay */}
+      <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
 
       <section className="hero relative w-full h-full flex flex-col justify-end items-center z-20 pb-8 sm:pb-12 md:pb-16 px-4 pointer-events-none overflow-hidden">
         
         <div 
           ref={headlineRef} 
-          className="w-full max-w-[95vw] flex justify-center items-center relative z-20 pointer-events-auto"
+          className="w-full max-w-6xl flex justify-center items-center relative z-20 pointer-events-auto text-center mx-auto px-4"
         >
           <h1 
             className="elevate-text text-center select-none" 
-            aria-label="ELEVATE"
+            aria-label="The Best Trick in Business Is a System That Runs Itself."
           >
-            ELEVATE
+            The Best Trick in Business<br className="hidden md:inline" /> Is a System That Runs Itself.
           </h1>
         </div>
 
         <div ref={footerRef} className="hero-footer absolute bottom-8 left-8 right-8 flex justify-between items-end text-white mix-blend-difference uppercase font-medium tracking-widest text-xs sm:text-sm">
-          {/* Footer content removed as requested */}
+          {/* Footer content */}
         </div>
 
       </section>

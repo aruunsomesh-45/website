@@ -1,7 +1,14 @@
+import About from "@/components/About";
+import TechStackCarousel from "@/components/TechStackCarousel";
+import Footer from "@/components/Footer";
+
 export default function AboutPage() {
   return (
     <main>
-      <h1>About</h1>
+      <About />
+      <TechStackCarousel />
+      <Footer />
     </main>
   );
 }
+

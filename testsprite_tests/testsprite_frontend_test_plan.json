@@ -1,9 +1,9 @@
 [
   {
     "id": "TC001",
-    "title": "Contact form submits successfully and resets for another inquiry",
-    "description": "This verifies that a visitor can submit the contact form successfully and then start a second message with a cleared form.",
-    "category": "Contact Inquiry Submission",
+    "title": "Complete the contact form and reach the confirmation page",
+    "description": "A prospective client can submit the inquiry form successfully and land on the confirmation page.",
+    "category": "Contact Inquiry Form",
     "steps": [
       {
         "type": "action",
@@ -11,35 +11,35 @@
       },
       {
         "type": "action",
-        "description": "Fill in the name field with a valid full name"
+        "description": "Fill in the name field with a valid name"
       },
       {
         "type": "action",
-        "description": "Fill in the email field with a valid email address"
+        "description": "Fill in the email field with {{LOGIN_USER}}"
       },
       {
         "type": "action",
-        "description": "Fill in the message field with a valid inquiry"
+        "description": "Fill in the message field with a valid inquiry message"
       },
       {
         "type": "action",
-        "description": "Submit the form"
+        "description": "Submit the inquiry form"
       },
       {
         "type": "assertion",
-        "description": "Verify a success confirmation is visible"
+        "description": "Verify the confirmation page is visible"
       },
       {
         "type": "assertion",
-        "description": "Verify the form is reset and ready for a new message"
+        "description": "Verify a submission success confirmation is visible"
       }
     ],
     "priority": "High"
   },
   {
     "id": "TC002",
-    "title": "Submit a contact inquiry successfully",
-    "description": "This test verifies that a visitor can fill out the contact form and receive a confirmation after submitting a valid inquiry.",
+    "title": "Submit a contact inquiry",
+    "description": "A prospective client can complete the contact form and reach the confirmation page.",
     "category": "Contact Inquiry Form",
     "steps": [
       {
@@ -56,7 +56,7 @@
       },
       {
         "type": "action",
-        "description": "Fill in the message field with a valid message"
+        "description": "Fill in the message field with a valid inquiry"
       },
       {
         "type": "action",
@@ -64,19 +64,19 @@
       },
       {
         "type": "assertion",
-        "description": "Verify a confirmation message is visible"
+        "description": "Verify a confirmation page is displayed"
       },
       {
         "type": "assertion",
-        "description": "Verify the form is reset for a new inquiry"
+        "description": "Verify the inquiry submission success state is visible"
       }
     ],
     "priority": "High"
   },
   {
     "id": "TC003",
-    "title": "Home page preloader and hero reveal",
-    "description": "This verifies that the homepage loads through the preloader sequence and reveals the animated hero introduction.",
+    "title": "Reach the homepage hero after loading",
+    "description": "A visitor can open the homepage, wait for the loading sequence to finish, and see the hero content appear.",
     "category": "Hero Section and Preloader",
     "steps": [
       {
@@ -85,24 +85,24 @@
       },
       {
         "type": "action",
-        "description": "Wait for the preloader sequence to complete"
+        "description": "Wait for the loading sequence to complete"
       },
       {
         "type": "assertion",
-        "description": "Verify the animated hero introduction is displayed"
+        "description": "Verify the hero headline is visible"
       },
       {
         "type": "assertion",
-        "description": "Verify the rotating brand words are displayed"
+        "description": "Verify the introductory hero content is visible"
       }
     ],
     "priority": "High"
   },
   {
     "id": "TC004",
-    "title": "Browse the homepage sections after the initial reveal",
-    "description": "This test verifies that a visitor can open the homepage, experience the loading and hero reveal sequence, and continue into the About, Services, and Projects sections.",
-    "category": "Work & Projects Showcase",
+    "title": "Submit a contact inquiry from the homepage",
+    "description": "A visitor can jump to the contact area from the homepage and submit the inquiry form successfully.",
+    "category": "Homepage Navigation and Section Anchors",
     "steps": [
       {
         "type": "action",
@@ -110,32 +110,305 @@
       },
       {
         "type": "action",
-        "description": "Wait for the preloader to finish"
+        "description": "Scroll to the contact section"
       },
       {
         "type": "action",
-        "description": "Scroll to the About section"
+        "description": "Fill in the inquiry form with valid details"
       },
       {
         "type": "action",
-        "description": "Scroll to the Services section"
-      },
-      {
-        "type": "action",
-        "description": "Scroll to the Projects section"
+        "description": "Submit the form"
       },
       {
         "type": "assertion",
-        "description": "Verify the About, Services, and Projects sections are displayed"
+        "description": "Verify the submission confirmation is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the thank you page is reached"
       }
     ],
     "priority": "High"
   },
   {
     "id": "TC005",
-    "title": "Featured project link opens the live external website",
-    "description": "This verifies that a featured project from the homepage projects showcase opens its live external website in a new context.",
-    "category": "Featured Projects Browsing",
+    "title": "Open the navigation overlay from the homepage",
+    "description": "A visitor can open the homepage navigation overlay from the hero area and see the full-screen menu appear.",
+    "category": "Navigation Menu Overlay",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the loading sequence to complete"
+      },
+      {
+        "type": "action",
+        "description": "Open the navigation overlay"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the navigation overlay is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify site navigation options are visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Reach key sections from the homepage menu overlay",
+    "description": "A visitor can open the homepage navigation overlay and move to the services or work sections successfully.",
+    "category": "Homepage Navigation and Section Anchors",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the navigation overlay"
+      },
+      {
+        "type": "action",
+        "description": "Choose the services section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the services section is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the navigation overlay closes after selection"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Open an email message from the navigation overlay",
+    "description": "A visitor can use the navigation overlay to start an email message through the direct email link.",
+    "category": "Navigation Menu Overlay",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the loading sequence to complete"
+      },
+      {
+        "type": "action",
+        "description": "Open the navigation overlay"
+      },
+      {
+        "type": "action",
+        "description": "Click the direct email link"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an email message composition view is opened"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Use the homepage to reach key sections",
+    "description": "A prospective client can start on the homepage and jump to the main sections from the in-page navigation.",
+    "category": "Homepage Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the homepage hero sequence to finish"
+      },
+      {
+        "type": "action",
+        "description": "Open the navigation overlay"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the services section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the services section is displayed on the homepage"
+      },
+      {
+        "type": "action",
+        "description": "Open the navigation overlay"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the work section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the work section is displayed on the homepage"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Use homepage calls to action to reach work and contact",
+    "description": "A visitor can jump from the homepage to the work and contact sections using the primary calls to action.",
+    "category": "Homepage Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the homepage hero sequence to finish"
+      },
+      {
+        "type": "action",
+        "description": "Click the call to action for the work section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the work section is displayed on the homepage"
+      },
+      {
+        "type": "action",
+        "description": "Click the call to action for the contact section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the contact section is displayed on the homepage"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Read the work page and open a live project website",
+    "description": "A visitor can review featured work and open an outbound live website link from a project card.",
+    "category": "Navigation Menu Overlay",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /work"
+      },
+      {
+        "type": "action",
+        "description": "Click a live website link for a featured project"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the external project website is opened"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Browse the featured work on the work page",
+    "description": "A visitor can review featured projects on the work page and open a live website link for a project.",
+    "category": "Selected Work and Projects Showcase",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /work"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the featured projects"
+      },
+      {
+        "type": "action",
+        "description": "Open a live website link for a project"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the client site opens"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the project showcase remains accessible when returning"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC012",
+    "title": "Browse to the work page from the menu overlay",
+    "description": "A visitor can use the navigation overlay to move from the homepage to the work page and view selected projects.",
+    "category": "Navigation Menu Overlay",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the loading sequence to complete"
+      },
+      {
+        "type": "action",
+        "description": "Open the navigation overlay"
+      },
+      {
+        "type": "action",
+        "description": "Choose the work page from the navigation overlay"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the work page content is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify project showcase content is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC013",
+    "title": "Browse to the services page from the menu overlay",
+    "description": "A visitor can use the navigation overlay to move from the homepage to the services page and view its content.",
+    "category": "Navigation Menu Overlay",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the loading sequence to complete"
+      },
+      {
+        "type": "action",
+        "description": "Open the navigation overlay"
+      },
+      {
+        "type": "action",
+        "description": "Choose the services page from the navigation overlay"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the services page content is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC014",
+    "title": "Explore a project from the homepage",
+    "description": "A visitor can review a project card from the homepage projects section and open the linked live website.",
+    "category": "Selected Work and Projects Showcase",
     "steps": [
       {
         "type": "action",
@@ -147,20 +420,99 @@
       },
       {
         "type": "action",
-        "description": "Click the featured project live website link"
+        "description": "Review a project card"
+      },
+      {
+        "type": "action",
+        "description": "Open the live website link for the project"
       },
       {
         "type": "assertion",
-        "description": "Verify the external project website is displayed"
+        "description": "Verify the client site opens"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the project section is still reachable from the homepage"
       }
     ],
     "priority": "High"
   },
   {
-    "id": "TC006",
-    "title": "Open a featured project from the showcase",
-    "description": "This test verifies that a visitor can find a featured project on the homepage and open its live external website from the showcase.",
-    "category": "Work & Projects Showcase",
+    "id": "TC015",
+    "title": "Open a service item from the services page",
+    "description": "A visitor can browse the services page and expand a service item to inspect its details and preview content.",
+    "category": "Services Overview and Interactive Services Accordion",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /services"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the services listing"
+      },
+      {
+        "type": "action",
+        "description": "Open a service item"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the expanded service details are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify preview content is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC016",
+    "title": "Open the work page",
+    "description": "A visitor can navigate to the work page to review selected projects and systems.",
+    "category": "Selected Work",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /work"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify work content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify project showcase content is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC017",
+    "title": "Open the services page",
+    "description": "A prospective client can navigate to the services page to review the available offerings.",
+    "category": "Services",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /services"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify services content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the service offerings are visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC018",
+    "title": "Open a social profile from the navigation overlay",
+    "description": "A visitor can use the navigation overlay to open an external social profile link.",
+    "category": "Navigation Menu Overlay",
     "steps": [
       {
         "type": "action",
@@ -168,161 +520,28 @@
       },
       {
         "type": "action",
-        "description": "Scroll to the Projects section"
+        "description": "Wait for the loading sequence to complete"
       },
       {
         "type": "action",
-        "description": "Click the external link for a featured project"
+        "description": "Open the navigation overlay"
+      },
+      {
+        "type": "action",
+        "description": "Click a social profile link"
       },
       {
         "type": "assertion",
-        "description": "Verify an external website is opened"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify the project showcase remains available after returning"
+        "description": "Verify the external social profile is opened"
       }
     ],
     "priority": "High"
   },
   {
-    "id": "TC007",
-    "title": "Home page scrolls to About from the contact call to action",
-    "description": "This verifies that the homepage about content is readable and the contact call to action moves the user to the contact section.",
-    "category": "About Section & Calls to Action",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Navigate to /"
-      },
-      {
-        "type": "action",
-        "description": "Scroll to the about section"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify the studio profile and credentials are displayed"
-      },
-      {
-        "type": "action",
-        "description": "Click the contact call to action"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify the contact section is displayed"
-      }
-    ],
-    "priority": "High"
-  },
-  {
-    "id": "TC008",
-    "title": "Jump from a project to the contact section",
-    "description": "This test verifies that a visitor can use the projects call to action to move into the contact area from the homepage.",
-    "category": "Work & Projects Showcase",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Navigate to /"
-      },
-      {
-        "type": "action",
-        "description": "Scroll to the Projects section"
-      },
-      {
-        "type": "action",
-        "description": "Click the contact call to action in the showcase"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify the contact section is displayed"
-      }
-    ],
-    "priority": "High"
-  },
-  {
-    "id": "TC009",
-    "title": "Home page scrolls to Projects from the work call to action",
-    "description": "This verifies that the work call to action takes the user from the homepage about content to the projects section.",
-    "category": "About Section & Calls to Action",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Navigate to /"
-      },
-      {
-        "type": "action",
-        "description": "Scroll to the about section"
-      },
-      {
-        "type": "action",
-        "description": "Click the work call to action"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify the projects section is displayed"
-      }
-    ],
-    "priority": "High"
-  },
-  {
-    "id": "TC010",
-    "title": "Show validation for missing contact details",
-    "description": "This test verifies that the contact form shows inline validation when required fields are left blank and the user tries to submit.",
-    "category": "Contact Inquiry Form",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Navigate to /contact"
-      },
-      {
-        "type": "action",
-        "description": "Submit the form"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify validation feedback is visible for the required fields"
-      }
-    ],
-    "priority": "High"
-  },
-  {
-    "id": "TC011",
-    "title": "Continue browsing after visiting a project link",
-    "description": "This test verifies that a visitor can open a featured project externally and then return to continue exploring the portfolio homepage.",
-    "category": "Work & Projects Showcase",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Navigate to /"
-      },
-      {
-        "type": "action",
-        "description": "Scroll to the Projects section"
-      },
-      {
-        "type": "action",
-        "description": "Click the external link for a featured project"
-      },
-      {
-        "type": "action",
-        "description": "Return to the portfolio page"
-      },
-      {
-        "type": "action",
-        "description": "Scroll to the next homepage section after Projects"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify the portfolio homepage remains navigable after the external visit"
-      }
-    ],
-    "priority": "High"
-  },
-  {
-    "id": "TC012",
-    "title": "Services items expand to reveal details and imagery",
-    "description": "This verifies that users can inspect a service by activating it and seeing its expanded details and preview imagery.",
-    "category": "Interactive Services Accordion",
+    "id": "TC019",
+    "title": "Explore services from the homepage",
+    "description": "A visitor can reach the services area from the homepage and expand a service item to inspect its details.",
+    "category": "Services Overview and Interactive Services Accordion",
     "steps": [
       {
         "type": "action",
@@ -334,23 +553,348 @@
       },
       {
         "type": "action",
-        "description": "Activate a service item"
+        "description": "Open a service item"
       },
       {
         "type": "assertion",
-        "description": "Verify the selected service details are displayed"
+        "description": "Verify the expanded service details are displayed"
       },
       {
         "type": "assertion",
-        "description": "Verify service preview imagery is displayed"
+        "description": "Verify additional offerings remain available"
       }
     ],
     "priority": "High"
   },
   {
-    "id": "TC013",
+    "id": "TC020",
+    "title": "Jump to work from the homepage about section",
+    "description": "A visitor can use the homepage about section action to jump to the projects section and inspect work.",
+    "category": "About Page and About Section",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the loading sequence to complete"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the about section"
+      },
+      {
+        "type": "action",
+        "description": "Click the action to view the work"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the projects section is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC021",
+    "title": "Read FAQ content",
+    "description": "A visitor can open the FAQ page and read the available questions and answers.",
+    "category": "Frequently Asked Questions",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /faq"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify FAQ content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify multiple questions and answers are visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC022",
+    "title": "Jump to contact from the homepage about section",
+    "description": "A visitor can use the homepage about section action to jump to the contact section and continue toward inquiry.",
+    "category": "About Page and About Section",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the loading sequence to complete"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the about section"
+      },
+      {
+        "type": "action",
+        "description": "Click the action to contact the developer"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the contact section is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC023",
+    "title": "Read the about page content",
+    "description": "A reader can open the dedicated about page and view the developer profile information.",
+    "category": "About Page and About Section",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /about"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the about page content is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify profile information is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC024",
+    "title": "Jump from the homepage to contact through the projects CTA",
+    "description": "A visitor can use the homepage projects call to action to move to the contact section and continue toward inquiry.",
+    "category": "Selected Work and Projects Showcase",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the projects section"
+      },
+      {
+        "type": "action",
+        "description": "Select the contact call to action"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the contact section is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the inquiry form is available"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC025",
+    "title": "Browse blog articles",
+    "description": "A reader can open the blog page and see a list of articles to explore.",
+    "category": "Engineering and Design Articles",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /blog"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify article listings are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify more than one article is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC026",
+    "title": "Read the services page content",
+    "description": "A visitor can open the services page and review the offered services.",
+    "category": "Navigation Menu Overlay",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /services"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the services page content is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify service offerings are visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC027",
+    "title": "Open the process page",
+    "description": "A potential client can navigate to the process page to understand how delivery works.",
+    "category": "Delivery Process",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /process"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify process content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the delivery stages are visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC028",
+    "title": "Read the process page content",
+    "description": "A visitor can open the process page and review the delivery workflow.",
+    "category": "Navigation Menu Overlay",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /process"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the process page content is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify delivery process stages are visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC029",
+    "title": "Read the delivery process page",
+    "description": "A visitor can open the process page and review the three-stage delivery workflow.",
+    "category": "Delivery Process",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /process"
+      },
+      {
+        "type": "action",
+        "description": "Read the delivery process content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the three-stage process is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the workflow explanation is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC030",
+    "title": "Read a blog article",
+    "description": "A reader can open a blog article from the listing and view the full article content.",
+    "category": "Engineering and Design Articles",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /blog"
+      },
+      {
+        "type": "action",
+        "description": "Open the first available article"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the article content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the article page contains more than the listing preview"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC031",
+    "title": "Reset the contact form after a successful submission",
+    "description": "A prospective client can send an inquiry, use the reset action to start another message, and see a fresh form ready for input.",
+    "category": "Contact Inquiry Form",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the message field with a valid inquiry message"
+      },
+      {
+        "type": "action",
+        "description": "Submit the inquiry form"
+      },
+      {
+        "type": "action",
+        "description": "Use the send another action"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the contact form is visible again"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the form is reset and ready for a new inquiry"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC032",
+    "title": "Read the blog page content",
+    "description": "A reader can open the blog page and see the available articles.",
+    "category": "Navigation Menu Overlay",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /blog"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the blog page content is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify article listings are visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC033",
     "title": "Show validation for an invalid email address",
-    "description": "This test verifies that the contact form rejects an incorrectly formatted email address and keeps the inquiry from being submitted.",
+    "description": "A visitor sees inline validation feedback when the email format is invalid on the contact form.",
     "category": "Contact Inquiry Form",
     "steps": [
       {
@@ -367,7 +911,7 @@
       },
       {
         "type": "action",
-        "description": "Fill in the message field with a valid message"
+        "description": "Fill in the message field with a valid inquiry"
       },
       {
         "type": "action",
@@ -375,16 +919,62 @@
       },
       {
         "type": "assertion",
-        "description": "Verify email validation feedback is visible"
+        "description": "Verify email validation feedback is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the inquiry is not submitted"
       }
     ],
-    "priority": "High"
+    "priority": "Medium"
   },
   {
-    "id": "TC014",
-    "title": "Contact form shows validation for missing required fields",
-    "description": "This verifies that submitting the contact form without required information surfaces validation and prevents a successful submission state.",
-    "category": "Contact Form Validation",
+    "id": "TC034",
+    "title": "Read the terms page",
+    "description": "A visitor can open the terms page and view the legal content successfully.",
+    "category": "Legal and Policy Pages",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /terms"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the terms content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the page shows a legal policy section"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC035",
+    "title": "Read the privacy policy",
+    "description": "A visitor can open the privacy page and view the policy content successfully.",
+    "category": "Legal and Policy Pages",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /privacy"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the privacy policy content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the page shows a legal policy section"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC036",
+    "title": "Show validation for blank required contact fields",
+    "description": "A visitor sees inline validation feedback when submitting the contact form without required information.",
+    "category": "Contact Inquiry Form",
     "steps": [
       {
         "type": "action",
@@ -392,23 +982,82 @@
       },
       {
         "type": "action",
-        "description": "Submit the form without entering any information"
+        "description": "Submit the form without entering required information"
       },
       {
         "type": "assertion",
-        "description": "Verify required field validation is visible"
+        "description": "Verify validation feedback is displayed"
       },
       {
         "type": "assertion",
-        "description": "Verify no success confirmation is visible"
+        "description": "Verify the form remains available for correction"
       }
     ],
-    "priority": "High"
+    "priority": "Medium"
   },
   {
-    "id": "TC015",
-    "title": "Send another inquiry after a successful submission",
-    "description": "This test verifies that a visitor can submit the contact form successfully and then reset it to send a second message.",
+    "id": "TC037",
+    "title": "Read the cookie policy",
+    "description": "A visitor can open the cookies page and view the policy content successfully.",
+    "category": "Legal and Policy Pages",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /cookies"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the cookie policy content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the page shows a legal policy section"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC038",
+    "title": "Reach the confirmation page",
+    "description": "A visitor can open the thank-you page and see the inquiry confirmation state successfully.",
+    "category": "Inquiry Confirmation Page",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /thank-you"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a confirmation message is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the page shows an inquiry completion state"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC039",
+    "title": "Access the Sanity Studio route",
+    "description": "A collaborator can open the studio route and see the embedded CMS interface load.",
+    "category": "Navigation Menu Overlay",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /studio"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the studio interface is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC040",
+    "title": "Send another inquiry after submission",
+    "description": "A visitor can submit a contact inquiry and then reset the form to send a new message.",
     "category": "Contact Inquiry Form",
     "steps": [
       {
@@ -425,43 +1074,6 @@
       },
       {
         "type": "action",
-        "description": "Fill in the message field with a valid message"
-      },
-      {
-        "type": "action",
-        "description": "Submit the form"
-      },
-      {
-        "type": "action",
-        "description": "Click the option to send another inquiry"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify the form is cleared for a new submission"
-      }
-    ],
-    "priority": "High"
-  },
-  {
-    "id": "TC016",
-    "title": "Contact form shows validation for an invalid email",
-    "description": "This verifies that the contact form rejects an invalid email format and surfaces a validation state before submission succeeds.",
-    "category": "Contact Form Validation",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Navigate to /contact"
-      },
-      {
-        "type": "action",
-        "description": "Fill in the name field with a valid full name"
-      },
-      {
-        "type": "action",
-        "description": "Fill in the email field with an invalid email address"
-      },
-      {
-        "type": "action",
         "description": "Fill in the message field with a valid inquiry"
       },
       {
@@ -469,106 +1081,174 @@
         "description": "Submit the form"
       },
       {
-        "type": "assertion",
-        "description": "Verify email validation is visible"
+        "type": "action",
+        "description": "Choose to send another message"
       },
       {
         "type": "assertion",
-        "description": "Verify no success confirmation is visible"
+        "description": "Verify the contact form is reset"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the submission confirmation is no longer visible"
       }
     ],
     "priority": "Medium"
   },
   {
-    "id": "TC017",
-    "title": "Standalone case study page is viewable",
-    "description": "This verifies that the dedicated case study page loads and presents project showcase content.",
-    "category": "Dedicated Case Study Page",
+    "id": "TC041",
+    "title": "Return from the confirmation page",
+    "description": "A visitor can use the confirmation page to continue back into the site after a successful inquiry.",
+    "category": "Inquiry Confirmation Page",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /case-study"
+        "description": "Navigate to /thank-you"
+      },
+      {
+        "type": "action",
+        "description": "Click the control to continue browsing the site"
       },
       {
         "type": "assertion",
-        "description": "Verify the case study content is displayed"
+        "description": "Verify a site page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user can continue browsing the portfolio"
       }
     ],
     "priority": "Medium"
   },
   {
-    "id": "TC018",
-    "title": "Standalone About page is viewable",
-    "description": "This verifies that the dedicated about page loads and presents the studio background content.",
-    "category": "Dedicated About Page",
+    "id": "TC042",
+    "title": "Read the legal policy pages",
+    "description": "A visitor can open the legal policy pages and view their content.",
+    "category": "Navigation Menu Overlay",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /about"
+        "description": "Navigate to /terms"
       },
       {
         "type": "assertion",
-        "description": "Verify the studio background content is displayed"
+        "description": "Verify the terms page content is visible"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /privacy"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the privacy policy content is visible"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /cookies"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the cookie policy content is visible"
       }
     ],
     "priority": "Medium"
   },
   {
-    "id": "TC019",
-    "title": "View the standalone About page",
-    "description": "This test verifies that a visitor can open the dedicated About page and read the studio background content.",
-    "category": "Dedicated About Page",
+    "id": "TC043",
+    "title": "Show validation for an incomplete contact submission",
+    "description": "A visitor can submit the contact form without required information and see validation feedback instead of a successful submission.",
+    "category": "Contact Inquiry Form",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /about"
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Submit the inquiry form without filling required fields"
       },
       {
         "type": "assertion",
-        "description": "Verify the dedicated about content is displayed"
+        "description": "Verify validation errors are visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the confirmation page is not shown"
       }
     ],
-    "priority": "Medium"
+    "priority": "Low"
   },
   {
-    "id": "TC020",
-    "title": "View the case study showcase content",
-    "description": "A visitor can open the standalone case study page and see its showcase content loaded.",
-    "category": "Dedicated Case Study Page",
+    "id": "TC044",
+    "title": "Open policy pages",
+    "description": "A reader can open the legal policy pages and review their content.",
+    "category": "Policy Pages",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /case-study"
+        "description": "Navigate to /terms"
       },
       {
         "type": "assertion",
-        "description": "Verify the case study showcase content is displayed"
+        "description": "Verify terms content is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /privacy"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify privacy policy content is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /cookies"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify cookie policy content is displayed"
       }
     ],
-    "priority": "Medium"
+    "priority": "Low"
   },
   {
-    "id": "TC021",
-    "title": "View the standalone case study page",
-    "description": "This test verifies that a visitor can open the dedicated case study page and see the project showcase content.",
-    "category": "Work & Projects Showcase",
+    "id": "TC045",
+    "title": "Show validation for an invalid email in the contact form",
+    "description": "A visitor can enter an invalid email address in the contact form and receive validation feedback before submission.",
+    "category": "Contact Inquiry Form",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /case-study"
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with an invalid email address"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the message field with a valid inquiry message"
+      },
+      {
+        "type": "action",
+        "description": "Submit the inquiry form"
       },
       {
         "type": "assertion",
-        "description": "Verify case study content is displayed"
+        "description": "Verify an email validation error is visible"
       }
     ],
-    "priority": "Medium"
+    "priority": "Low"
   },
   {
-    "id": "TC022",
-    "title": "Open the Sanity Studio dashboard",
-    "description": "A content editor can access the embedded studio and see the management dashboard load.",
-    "category": "Sanity Studio Dashboard",
+    "id": "TC046",
+    "title": "Access the CMS studio route",
+    "description": "A collaborator can open the studio route and reach the embedded CMS workspace.",
+    "category": "Sanity Studio",
     "steps": [
       {
         "type": "action",
@@ -576,26 +1256,13 @@
       },
       {
         "type": "assertion",
-        "description": "Verify the embedded Sanity Studio dashboard is displayed"
-      }
-    ],
-    "priority": "Medium"
-  },
-  {
-    "id": "TC023",
-    "title": "Sanity Studio dashboard loads for content editing",
-    "description": "This verifies that the embedded Sanity Studio page loads and presents the content management interface.",
-    "category": "Sanity Studio Access",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Navigate to /studio"
+        "description": "Verify the studio workspace is displayed"
       },
       {
         "type": "assertion",
-        "description": "Verify the content management dashboard is displayed"
+        "description": "Verify the CMS interface is available"
       }
     ],
-    "priority": "Medium"
+    "priority": "Low"
   }
 ]

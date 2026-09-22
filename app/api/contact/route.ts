@@ -5,19 +5,136 @@ import { validateContactSubmission, isAuthorizedAdmin } from "@/lib/contactValid
 export const dynamic = "force-dynamic";
 
 /**
+ * Forward submission to AIS Cloud Run Webhook
+ */
+async function triggerAISWebhook(payload: {
+  name: string;
+  email: string;
+  subject?: string | null;
+  message?: string | null;
+  websiteUrl: string;
+}) {
+  const webhookUrl = "https://ais-dev-ca2vwgvemvn7ngm5oh4vgk-133888572211.asia-southeast1.run.app/api/webhook/contact";
+
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 12000); // 12 second timeout
+
+    const response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-Agent": "ArunaSomeshPortfolio-AISWebhook/1.0",
+      },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeoutId);
+
+    if (response.ok) {
+      const data = await response.json().catch(() => null);
+      return { success: true, data };
+    } else {
+      console.warn(`[AIS Webhook] Returned HTTP status: ${response.status}`);
+      return { success: false, status: response.status };
+    }
+  } catch (error) {
+    console.error("[AIS Webhook] Dispatch error:", error);
+    return { success: false, error };
+  }
+}
+
+/**
+ * Forward submission to Make.com Webhook if configured
+ */
+async function triggerMakeWebhook(payload: {
+  id?: string;
+  name: string;
+  email: string;
+  phone?: string | null;
+  subject?: string | null;
+  message?: string | null;
+  submittedAt: string;
+}) {
+  const webhookUrl = process.env.MAKE_WEBHOOK_URL?.trim();
+  if (!webhookUrl) {
+    return { dispatched: false, reason: "MAKE_WEBHOOK_URL is not configured" };
+  }
+
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+
+    const response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-Agent": "ArunaSomeshPortfolio-ContactWebhook/1.0",
+      },
+      body: JSON.stringify({
+        ...payload,
+        source: "portfolio_contact_form",
+      }),
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      console.warn(`[Make.com Webhook] Returned HTTP status: ${response.status}`);
+      return { dispatched: false, status: response.status };
+    }
+
+    return { dispatched: true };
+  } catch (error) {
+    console.error("[Make.com Webhook] Dispatch error:", error);
+    return { dispatched: false, error };
+  }
+}
+
+/**
  * POST /api/contact
- * Handles contact form submissions
+ * Handles contact form submissions, stores in database, and triggers AIS & Make.com webhook automation
  */
 export async function POST(request: NextRequest) {
   try {
     let body: unknown;
-    try {
-      body = await request.json();
-    } catch {
-      return NextResponse.json(
-        { success: false, error: "Invalid JSON format in request body." },
-        { status: 400 }
-      );
+    const contentType = request.headers.get("content-type") || "";
+
+    if (contentType.includes("application/json")) {
+      try {
+        body = await request.json();
+      } catch {
+        return NextResponse.json(
+          { success: false, error: "Invalid JSON format in request body." },
+          { status: 400 }
+        );
+      }
+    } else if (contentType.includes("multipart/form-data") || contentType.includes("application/x-www-form-urlencoded")) {
+      try {
+        const formData = await request.formData();
+        const obj: Record<string, unknown> = {};
+        formData.forEach((value, key) => {
+          obj[key] = typeof value === "string" ? value : "";
+        });
+        body = obj;
+      } catch {
+        return NextResponse.json(
+          { success: false, error: "Invalid form data format." },
+          { status: 400 }
+        );
+      }
+    } else {
+      // Fallback try JSON
+      try {
+        body = await request.json();
+      } catch {
+        return NextResponse.json(
+          { success: false, error: "Unsupported Content-Type header." },
+          { status: 400 }
+        );
+      }
     }
 
     // 1. Server-side validation and sanitization
@@ -29,51 +146,96 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 2. Obtain Supabase server client
+    const submissionData = validation.data;
+    const submittedAt = new Date().toISOString();
+    const origin = request.headers.get("origin") || request.headers.get("referer") || "https://arunasomesh.com";
+    const websiteUrl = submissionData.websiteUrl || origin;
+
+    // 2. Dispatch to AIS Cloud Run Webhook
+    const aisResult = await triggerAISWebhook({
+      name: submissionData.name,
+      email: submissionData.email,
+      subject: submissionData.subject,
+      message: submissionData.message,
+      websiteUrl: websiteUrl,
+    });
+
+    const inquiryId = aisResult.data?.inquiryId || undefined;
+    const queryMessages = aisResult.data?.queryMessages || [];
+    let savedId: string | undefined = undefined;
+
+    // 3. Persist complete record into Supabase Database
     const supabase = getServerSupabase();
-    if (!supabase) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: "Database configuration is not initialized on the server.",
-        },
-        { status: 503 }
-      );
+    if (supabase) {
+      try {
+        // Try inserting with all extended columns (website_url, inquiry_id, query_messages)
+        const { data, error } = await supabase
+          .from("contact_submissions")
+          .insert([
+            {
+              name: submissionData.name,
+              email: submissionData.email,
+              phone: submissionData.phone || null,
+              subject: submissionData.subject || null,
+              message: submissionData.message || null,
+              website_url: websiteUrl,
+              inquiry_id: inquiryId || null,
+              query_messages: queryMessages,
+              status: "new",
+            },
+          ])
+          .select("id, created_at")
+          .single();
+
+        if (error) {
+          // If schema has not added new columns yet, fallback to base insertion
+          console.warn("[Contact API] Full schema insert fallback:", error.message);
+          const fallback = await supabase
+            .from("contact_submissions")
+            .insert([
+              {
+                name: submissionData.name,
+                email: submissionData.email,
+                phone: submissionData.phone || null,
+                subject: submissionData.subject || null,
+                message: submissionData.message || null,
+                status: "new",
+              },
+            ])
+            .select("id, created_at")
+            .single();
+
+          if (fallback.data?.id) {
+            savedId = fallback.data.id;
+          }
+        } else if (data?.id) {
+          savedId = data.id;
+        }
+      } catch (dbError) {
+        console.warn("[Contact API] Supabase connection warning:", dbError);
+      }
     }
 
-    // 3. Insert record into Supabase contact_submissions table
-    const { data, error } = await supabase
-      .from("contact_submissions")
-      .insert([
-        {
-          name: validation.data.name,
-          email: validation.data.email,
-          phone: validation.data.phone || null,
-          subject: validation.data.subject || null,
-          message: validation.data.message || null,
-          status: "new",
-        },
-      ])
-      .select("id, created_at")
-      .single();
+    // 4. Asynchronously trigger Make.com Webhook automation (if configured)
+    const webhookResult = await triggerMakeWebhook({
+      id: savedId || inquiryId,
+      name: submissionData.name,
+      email: submissionData.email,
+      phone: submissionData.phone,
+      subject: submissionData.subject,
+      message: submissionData.message,
+      submittedAt,
+    });
 
-    if (error) {
-      console.error("[Contact API] Supabase insertion error:", error.message);
-      return NextResponse.json(
-        {
-          success: false,
-          error: "Failed to save submission. Please try again later.",
-        },
-        { status: 500 }
-      );
-    }
-
-    // 4. Return compact success response
+    // 5. Return success response with inquiry details
     return NextResponse.json(
       {
         success: true,
-        message: "Message received successfully.",
-        id: data?.id,
+        message: "Thanks! Your message has been received.",
+        id: savedId || inquiryId,
+        inquiryId: inquiryId || savedId,
+        queryMessages,
+        webhookDispatched: webhookResult.dispatched,
       },
       { status: 201 }
     );

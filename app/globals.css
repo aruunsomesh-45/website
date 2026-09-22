@@ -69,52 +69,51 @@ body {
   animation: moveShader 6s ease-in-out infinite;
 }
 
-/* High-contrast Didone/modern serif hero headline "ELEVATE" */
+/* Precise replica of the Didone/luxury serif font & color gradient from the reference image */
 .elevate-text {
   font-family: var(--font-bodoni), var(--font-playfair), "Bodoni MT", Didot, "Didot LT STD", "Playfair Display", serif;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: clamp(4.2rem, 14vw, 10.5rem);
-  line-height: 0.95;
-  letter-spacing: clamp(0.5rem, 3.2vw, 3rem);
+  font-size: clamp(1.75rem, 4.2vw, 4.6rem);
+  line-height: 1.08;
+  letter-spacing: clamp(0.04rem, 0.4vw, 0.22rem);
   display: inline-block;
-  transform: scale(0.92, 1.2);
   transform-origin: center center;
-  padding-bottom: 0.1em;
+  padding-bottom: 0.08em;
+  max-width: 1200px;
   
-  /* Multi-layered gradient:
-     Layer 1: Diagonal brushed metal / foil reflection highlight sheen at ~45deg
-              Applied across the metallic silver portion on the right
-     Layer 2: Primary horizontal linear gradient: deep maroon/burgundy (#7A3B4A) to metallic silver-grey (#B8BEC4 to #E8EAEC)
+  /* Dual-layer metallic chrome & wine gradient matching reference image:
+     Left: Ruby wine / mauve burgundy (#863B53)
+     Center: Dusty lavender to slate (#6E5F7D, #5F6C8D)
+     Right: Metallic reflective steel blue & silver chrome (#557095, #98B5D3, #CADBED)
   */
   background-image:
     linear-gradient(
       45deg,
       transparent 0%,
-      transparent 48%,
-      rgba(255, 255, 255, 0.25) 53%,
-      rgba(255, 255, 255, 0.75) 57%,
-      rgba(255, 255, 255, 0.15) 62%,
-      transparent 67%,
-      rgba(255, 255, 255, 0.45) 75%,
-      rgba(255, 255, 255, 0.85) 80%,
-      rgba(255, 255, 255, 0.2) 85%,
-      transparent 90%,
-      rgba(255, 255, 255, 0.55) 96%,
-      transparent 100%
+      transparent 45%,
+      rgba(255, 255, 255, 0.3) 52%,
+      rgba(255, 255, 255, 0.8) 56%,
+      rgba(255, 255, 255, 0.2) 61%,
+      transparent 66%,
+      rgba(255, 255, 255, 0.5) 76%,
+      rgba(255, 255, 255, 0.9) 81%,
+      rgba(255, 255, 255, 0.25) 86%,
+      transparent 92%
     ),
     linear-gradient(
       90deg,
-      #561f2e 0%,
-      #7a3b4a 18%,
-      #8c4558 28%,
-      #7a5367 38%,
-      #84768b 48%,
-      #9fa6b2 58%,
-      #b8bec4 70%,
-      #d5dade 82%,
-      #e8eaec 92%,
-      #f3f5f7 100%
+      #6e2b3f 0%,
+      #863b53 14%,
+      #9a4a65 24%,
+      #824e6a 34%,
+      #6e5f7d 44%,
+      #5f6c8d 54%,
+      #557095 64%,
+      #6d8caa 74%,
+      #98b5d3 84%,
+      #cadbed 93%,
+      #4e6686 100%
     );
   
   -webkit-background-clip: text;
@@ -123,6 +122,55 @@ body {
   color: transparent;
 
   /* Ambient contrast filter ensuring legibility against teal/seafoam and dark subjects */
-  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.5)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.65));
+  filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.55)) drop-shadow(0 1px 4px rgba(0, 0, 0, 0.7));
 }
+
+/* ==========================================================================
+   Infinite Auto-scrolling Tech Marquee Animations
+   ========================================================================== */
+@keyframes marquee-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 40s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 40s linear infinite;
+  will-change: transform;
+}
+
+.pause-on-hover:hover .animate-marquee-left,
+.pause-on-hover:hover .animate-marquee-right,
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused !important;
+}
+
+/* Gradient Fade Masks for Edge Bleed */
+.mask-gradient-x {
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.8) 4%, black 12%, black 88%, rgba(0,0,0,0.8) 96%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.8) 4%, black 12%, black 88%, rgba(0,0,0,0.8) 96%, transparent 100%);
+}
+
 

@@ -1,11 +1,13 @@
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import TechStackCarousel from "@/components/TechStackCarousel";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import Process from "@/components/Process";
 import ProcessSteps from "@/components/ProcessSteps";
 import ManifestoCurve from "@/components/ManifestoCurve";
 import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 import { client } from "@/sanity/lib/client";
 
 export const dynamic = "force-dynamic";
@@ -60,12 +62,14 @@ export default async function Home() {
     <main>
       <Hero />
       <About />
+      <TechStackCarousel />
       <Services sanityServices={sanityServices} />
       <Process />
       <Projects sanityProjects={sanityProjects} />
       <ManifestoCurve />
       <ProcessSteps sanitySteps={sanitySteps} />
       <Contact />
+      <Footer />
     </main>
   );
 }
